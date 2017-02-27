@@ -1,0 +1,44 @@
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## World Happiness
+<h3>Date: 2017/02/27</h3>
+Explanation: https://en.wikipedia.org/wiki/World_Happiness_Report
+
+Datasource: http://worldhappiness.report/
+
+
+```{r map, echo=FALSE, fig.height=8, fig.width=10}
+library(leaflet)
+happy <- read.csv("/Users/JPE/R/Coursera/Coursera9_DDP_shiny/Happyness.csv")
+happy <- as.data.frame(happy)
+
+pal <- colorNumeric("RdYlGn", happy$Happiness_changes)
+happy$col <- pal(happy$Happiness_changes)
+
+pop <- paste('<ul style="list-style-type:none">',
+             '<li>', 'Country Code: <b>', happy$Country_iso3n,'</b></li>',
+             '<li>', 'Country Name: <b>', happy$Country_orig,'</b></li>',
+             '<li>', '-------------------------------', '</li>',
+             '<li>','Happiness', '</li>',
+             '<li>','Score: <b>',format(happy$Happiness_score, digits=2, nsmall=2),'</b></li>',
+             '<li>', '(max 7.53 / mean 5.38 / min 2.91)', '</li>',
+             '<li>','Change: <b>',format(happy$Happiness_changes,digits=2,nsmall=2),'</b></li>',
+             '<li>', '(max 1.29 / mean 0.04 / min -1.29)', '</li>',
+             '</ul>', sep="")
+
+my_map <- leaflet() %>% 
+        addTiles(urlTemplate = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png") %>%
+        addCircleMarkers(lng=happy$Longitude, lat=happy$Latitude, popup=pop, 
+                         clusterOptions = markerClusterOptions(), radius=happy$Happiness_score*3,
+                         fillColor = happy$col, fillOpacity = 0.7) %>%
+        addLegend(position="topright", title="Change in<br>Happiness<br>from 2005-07<br>to  2013-15", 
+                  pal=pal, opacity=0.7, values=happy$Happiness_changes) %>%
+        addLegend(position="bottomright", title = "<br>Circlesize reflects actual <br>grade of Happiness (2016)", labels = "", colors="white")
+my_map
+
+```
+
