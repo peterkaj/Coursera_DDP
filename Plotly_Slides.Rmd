@@ -1,0 +1,99 @@
+---
+title: "Week 3 Assignment" 
+subtitle: "Coursera - Data Science Specialization<br>Module - Developing Data Products"
+author: "Author: peterkaj"
+date: "Date: March 3, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache=TRUE, fig.width = 8, fig.height = 5, fig.align = "center")
+```
+
+## Assignment
+
+### Goal
+Create a web page presentation using R Markdown that features a plot created with Plotly
+
+### Criteria
+
+* The work has to be a web page presentation and feature an interactive plot, which have been created with Plotly
+
+* The web page presentation has to feature a date which is less than two month before the date of grading this assignment
+
+
+## Plotly in action 1
+```{r loading_data, echo=FALSE, message=FALSE}
+library(plotly)
+library(ggplot2)
+library(tidyquant)
+library(tidyr)
+library(dplyr)
+
+set.seed(101)
+d <- diamonds[sample(nrow(diamonds), 1000),]
+```
+
+
+```{r plot_data_1, echo=FALSE}
+plot_ly(d, x = ~carat, y = ~price, color = ~price, type = "scatter", mode = "markers") %>%
+        layout(title="Diamond price via carat - plotly Scatterplot")
+```
+
+## Plotly in action 2
+```{r plot_data_2, echo=FALSE}
+plot_ly(d, x = ~cut, y = ~price, color=~cut, type = "box") %>%
+        layout(title="Diamond price - plotly Boxplot")
+```
+
+## Plotly in action 3
+```{r plot_data_3, echo=FALSE, message=FALSE, warning=FALSE}
+p <- ggplot(data=d, aes(x=carat, y=price)) +
+        geom_point(aes(text=paste("Cut:", cut)), size=2) + ggtitle("Trends of diamond prices via ggplotly") + 
+        geom_smooth(aes(colour = clarity, fill=clarity)) + facet_wrap(~ clarity)
+gg <- ggplotly(p)
+gg
+
+```
+
+## Plotly in action 4
+```{r plot_data_4, echo=FALSE}
+plot_ly(d, x=~x, y=~y, z=~z, color=~carat , type = "scatter3d", mode="markers")%>%
+        layout(title="Dimension of diamonds via Carat - plotly scatter3D")
+```
+
+## Plotly in action 5
+```{r plot_data_5, echo=FALSE}
+g <- ggplot(d, aes(price, fill = cut)) + geom_density(alpha = 0.3)
+g <- g + ggtitle("Diamond prices - densitiy plot via ggplotly")
+gly <- ggplotly(g)
+gly
+```
+
+## Plotly in action 6
+```{r plot_data_6, echo=FALSE}
+plot_ly(d, x=~cut, y=~clarity, z=~price, type = "heatmap", colors=colorRamp(c("gray", "yellow", "red"))) %>%
+        layout(title="Heatmap of diamonds prices - plotly heatmap")
+```
+
+## Plotly in action 7
+```{r plot_data_7, echo=FALSE}
+p <- plot_ly() %>%
+        add_pie(data = count(diamonds, cut), hole=0.5, labels = ~cut, values = ~n,
+                name = "Cut", domain = list(x = c(0, 0.4), y = c(0.4, 1))) %>%
+        add_pie(data = count(diamonds, color), hole=0.5, labels = ~cut, values = ~n,
+                name = "Color", domain = list(x = c(0.6, 1), y = c(0.4, 1))) %>%
+        add_pie(data = count(diamonds, clarity), hole=0.5, labels = ~cut, values = ~n,
+                name = "Clarity", domain = list(x = c(0.25, 0.75), y = c(0, 0.6))) %>%
+        layout(title = "Diamond shares - plotly pie charts", showlegend = F,
+               xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+               yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+p
+```
+
+
+## Thank you for (Re)viewing :-)
+
+<img src="figures/review.jpg" width="600"/>
+
+
