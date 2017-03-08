@@ -1,5 +1,5 @@
 # Coursera_DDP
-Coursera Developing Data Products - Course Project
+Coursera Developing Data Products - Course Projects
 
 ## Project 1 - World Happiness
 Showing th World Happiness Index (data from http://worldhappiness.report) via Leaflet
