@@ -2,19 +2,21 @@
 Coursera Developing Data Products - Course Projects
 
 ## Project 1 - World Happiness
-Showing th World Happiness Index (data from http://worldhappiness.report) via Leaflet
+Viewing the World Happiness Index (data from http://worldhappiness.report) via Leaflet
 
-<https://peterkaj.github.io/Coursera_DDP/WorldHappiness.html>
-<a href="https://peterkaj.github.io/Coursera_DDP/WorldHappiness.html"> World Happiness App</a>
+Application: <https://peterkaj.github.io/Coursera_DDP/WorldHappiness.html>
 
 ## Project 2 - Plotly
 Interactive Web Page Pesentation with Plotly
 Showing the possibilities with ploty on the basis of *diamonds* dataset
 
-<https://peterkaj.github.io/Coursera_DDP/Plotly_Slides.html>
+Presentation: <https://peterkaj.github.io/Coursera_DDP/Plotly_Slides.html>
 
 ## Project 3 - Best time to visit Austria
-With this Shiny-Application it is possible to find some days to visit Austria which fits to the specified weather conditions.
+With this Shiny-Application it is possible to find some days to visit Austria which fits to specified weather conditions.
 
-<https://peterka.shinyapps.io/visit_austria/>
+Application: <https://peterka.shinyapps.io/Visit_Austria/>
+SourceFiles: <https://github.com/peterkaj/Coursera_DDP/tree/gh-pages/Visit_Austria>
 
+Presentation: <https://peterkaj.github.io/Coursera_DDP/Visit_Austria_Presentation/Visit_Austria.html>
+SourceFiles: <https://github.com/peterkaj/Coursera_DDP/tree/gh-pages/Visit_Austria_Presentation>
