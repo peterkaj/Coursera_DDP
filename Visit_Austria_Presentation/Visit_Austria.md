@@ -4,19 +4,9 @@ author: peterkaj
 date: March 7 2017
 transition: rotate
 
+Coursera<br> Data Science Specialization Course
 
-What is this Presentation about?
-========================================================
-
-
-In the Module **Developing Data Products** of Coursera **Data Science Specialzation Course** i had to build a Shiny Application.
-
-This is the presentation of my Shiny solution, which is called <center><h2> **"Best time to visit Austria"** </h2></center>
-
-- Code@GitHub  (<https://github.com/peterkaj/Coursera_DDP/Visit_Austria/>)
-- <b>Shiny App</b>  (<https://peterka.shinyapps.io/visit_austria/>)
-- Austria? (<https://en.wikipedia.org/wiki/Austria>)
-- DataSource <small>(<https://www.zamg.ac.at/cms/de/klima/informationsportal-klimawandel/daten-download/tagesdaten>)</small>
+Module<br> Developing Data Products
 
 
 Why should i use the app?
@@ -27,12 +17,12 @@ Why should i use the app?
 <div align="center">
 <img src="./Visit_Austria_app.png" width=600>
 </div>
-<center><small>(Screenshot)</small></center>
 
-How does it work? 1/3
+
+How does it work? 1/2
 ========================================================
-
-Out of the original daily weather data i created a data set like this
+<small>
+Out of the original daily weather data i created a data set which contains day of a year, rainvolume, lowest & highest daily temperature for every day of the years between 1948 and 2009 - like this...</small>
 
 
 
@@ -43,24 +33,15 @@ Out of the original daily weather data i created a data set like this
 2 01/01    0 -4.850000  6.000
 3 01/01    0 -8.825000 -1.325
 ```
-It contains
-- day of a year
-- rainvolume
-- lowest daily temperature
-- highest daily temperature
-
-for every day of the years between 1948 and 2009.
-
-How does it work? 2/3
-========================================================
-in a next step the probability of occurence for some specific weather data is calculated - for instance ...
 <small>
-* rainfall from 0 to 30mm
-* lowest temp. from -2 to 14°C
-* highest temp. from 3 to 32°C
-</small>
+in a next step the probability of occurence for some specific weather data is calculated - for instance ...<br><br>
+-->   rainfall from 0 to 30mm <br>
+-->   lowest temp. from -2 to 14°C <br>
+-->   highest temp. from 3 to 32°C <br></small>
 
-... which results in probabilities like ...
+How does it work? 2/2
+========================================================
+<small>... which results in probabilities like ...
 
 ```
    date prain     ptmin     ptmax
@@ -69,23 +50,19 @@ in a next step the probability of occurence for some specific weather data is ca
 3 01/03     1 0.3225806 0.2741935
 ```
 
-A probability of eg. 80% (0.8) means:<br>
+A probability of 80% (0.8) means:<br>
 <small>If you visit Austria every year at the same day for 10 years, then you may find the specified weather conditions 8 times at that day.</small>
 
-
-
-How does it work? 3/3
-========================================================
-A day, where the probability of every weather condition is higher than the specified one, is a good day to visit Austria and is displayed in the GoogleVis calendar chart.
+At a day, where the probability of every weather condition is higher than the specified one, you will visit Austria and it is displayed in the GoogleVis calendar.</small>
 <!-- Calendar generated in R 3.3.2 by googleVis 0.6.2 package -->
-<!-- Wed Mar  8 18:13:39 2017 -->
+<!-- Wed Mar  8 19:42:56 2017 -->
 
 
 <!-- jsHeader -->
 <script type="text/javascript">
  
 // jsData 
-function gvisDataCalendarID6a2c66afa53e () {
+function gvisDataCalendarID799b1d8ed2e8 () {
 var data = new google.visualization.DataTable();
 var datajson =
 [
@@ -1557,8 +1534,8 @@ return(data);
 }
  
 // jsDrawChart
-function drawChartCalendarID6a2c66afa53e() {
-var data = gvisDataCalendarID6a2c66afa53e();
+function drawChartCalendarID799b1d8ed2e8() {
+var data = gvisDataCalendarID799b1d8ed2e8();
 var options = {};
 options["width"] = 1000;
 options["height"] = 500;
@@ -1571,7 +1548,7 @@ options["calendar"] = {yearLabel: { fontName: 'Times-Roman',
                                      focusedCellColor: {stroke:'red'}};
 
     var chart = new google.visualization.Calendar(
-    document.getElementById('CalendarID6a2c66afa53e')
+    document.getElementById('CalendarID799b1d8ed2e8')
     );
     chart.draw(data,options);
     
@@ -1595,9 +1572,9 @@ if (newPackage)
   pkgs.push(chartid);
   
 // Add the drawChart function to the global list of callbacks
-callbacks.push(drawChartCalendarID6a2c66afa53e);
+callbacks.push(drawChartCalendarID799b1d8ed2e8);
 })();
-function displayChartCalendarID6a2c66afa53e() {
+function displayChartCalendarID799b1d8ed2e8() {
   var pkgs = window.__gvisPackages = window.__gvisPackages || [];
   var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
   window.clearTimeout(window.__gvisLoad);
@@ -1621,26 +1598,26 @@ callbacks.shift()();
 </script>
  
 <!-- jsChart -->  
-<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartCalendarID6a2c66afa53e"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartCalendarID799b1d8ed2e8"></script>
  
 <!-- divChart -->
   
-<div id="CalendarID6a2c66afa53e" 
+<div id="CalendarID799b1d8ed2e8" 
   style="width: 1000; height: 500;">
 </div>
 
 Useful things
 ========================================================
-* **default settings** allow a quick weather-setting for most likely activities
+- **default settings** allow a quick weather-setting for most likely activities
 <div align="center">
-<img src="Visit_Austria_default.png" width=300>
+<img src="Visit_Austria_default.png" width=250>
 </div>
-<br>
-* Source of the presentation
-<https://github.com/peterkaj/Coursera_DDP/Visit_Austria_Presentation/>
 
-========================================================
-type: section
-<br> <br> <br>
-<center><h1>Thank you!</h1></center>
-
+- **Links**
+<small><small>
+Code@GitHub :  <https://github.com/peterkaj/Coursera_DDP/Visit_Austria/><br>
+Shiny.App :  <https://peterka.shinyapps.io/visit_austria/><br>
+Presentation : <https://github.com/peterkaj/Coursera_DDP/Visit_Austria_Presentation/><br>
+Austria : <https://en.wikipedia.org/wiki/Austria><br>
+DataSource : <small><https://www.zamg.ac.at/cms/de/klima/informationsportal-klimawandel/daten-download/tagesdaten></small>
+</small></small>
