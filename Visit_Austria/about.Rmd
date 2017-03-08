@@ -1,0 +1,38 @@
+#Best time to visit Austria
+
+With this Application it is possible to **find some days to visit Austria which fits to the specified weather conditions.**
+
+Where is Austria? -> https://en.wikipedia.org/wiki/Austria
+
+###Range of rainfall quantity
+The sum of the daily rainvolume is measured in mm. At a good day for a visit, the rainvolume lies within the specified range.
+
+###Range of lowest daily temperature
+The air temperature (measured in °C) varies over a day. At a good day for a visit, the lowest daily temperature lies within the specified range.
+
+###Range of highest daily temperature
+The air temperature (measured in °C) varies over a day. At a good day for a visit, the highest daily temperature lies within the specified range.
+
+###Probability of occurrence
+Hey guys - we are dealing with the weather - so we are dealing with probabilities :-)
+
+With this value the probability of the occurence of rainfall quantity and lowest & highest daily temperature is specified.
+
+A probability of 80% means roughly: If you visit Austria every year at the same day for 10 years, then you may find the specified weather conditions 8 times at that day.
+
+####Example
+I`d like to visit Austria for a **city trip** - it sould not be too hot and not too cold. Rainfall is not important, cause i will visit many indoor spots. The probability could be lower, because if weather is changing i would visit some alternative tourist-programm. So i would choose:
+
+- Rainfall between 0 and 30mm
+
+- lowest temperatur between 0 and 12°C
+
+- highest temperatur between 5 and 30°C
+
+- Probability of occurrence of 50%
+
+###Default Settings
+To make a selection easy there are predefined (default) settings for some most likely activities.
+
+### Data Source
+https://www.zamg.ac.at/cms/de/klima/informationsportal-klimawandel/daten-download/tagesdaten
