@@ -5,6 +5,7 @@ Coursera Developing Data Products - Course Projects
 Showing th World Happiness Index (data from http://worldhappiness.report) via Leaflet
 
 <https://peterkaj.github.io/Coursera_DDP/WorldHappiness.html>
+<a href="https://peterkaj.github.io/Coursera_DDP/WorldHappiness.html"> World Happiness App</a>
 
 ## Project 2 - Plotly
 Interactive Web Page Pesentation with Plotly
