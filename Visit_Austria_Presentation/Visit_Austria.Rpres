@@ -1,0 +1,123 @@
+Best time to visit Austria
+========================================================
+author: peterkaj
+date: March 7 2017
+transition: rotate
+
+
+What is this Presentation about?
+========================================================
+
+
+In the Module **Developing Data Products** of Coursera **Data Science Specialzation Course** i had to build a Shiny Application.
+
+This is the presentation of my Shiny solution, which is called <center><h2> **"Best time to visit Austria"** </h2></center>
+
+- Code@GitHub  (<https://github.com/peterkaj/Coursera_DDP/Visit_Austria/>)
+- <b>Shiny App</b>  (<https://peterka.shinyapps.io/visit_austria/>)
+- Austria? (<https://en.wikipedia.org/wiki/Austria>)
+- DataSource <small>(<https://www.zamg.ac.at/cms/de/klima/informationsportal-klimawandel/daten-download/tagesdaten>)</small>
+
+
+Why should i use the app?
+========================================================
+* With this Application it is possible to find some days to visit Austria which fits to the specified weather conditions.
+* When is the best time for skiing, swimming, a city-trip, .... <br>-> get the answer with the app :-)
+
+<div align="center">
+<img src="./Visit_Austria_app.png" width=600>
+</div>
+<center><small>(Screenshot)</small></center>
+
+How does it work? 1/3
+========================================================
+
+Out of the original daily weather data i created a data set like this
+```{r, echo=FALSE}
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(googleVis))
+weather <- read.csv(file="./weather_data.csv", sep=";", dec=",", stringsAsFactors = FALSE)
+
+```
+
+
+```{r, echo=FALSE}
+head(weather,3)
+```
+It contains
+- day of a year
+- rainvolume
+- lowest daily temperature
+- highest daily temperature
+
+for every day of the years between 1948 and 2009.
+
+How does it work? 2/3
+========================================================
+in a next step the probability of occurence for some specific weather data is calculated - for instance ...
+<small>
+* rainfall from 0 to 30mm
+* lowest temp. from -2 to 14°C
+* highest temp. from 3 to 32°C
+</small>
+
+... which results in probabilities like ...
+```{r, echo=FALSE}
+r_min=0; r_max=30
+tmin_min= -2; tmin_max=14
+tmax_min= 3; tmax_max=32
+prob=0.5
+
+rain_prob <- group_by(weather, date) %>% summarise(sum(rain>=r_min & rain<=r_max)/n())
+tmin_prob <- group_by(weather, date) %>% summarise(sum(tmin>=tmin_min & tmin<=tmin_max)/n())
+tmax_prob <- group_by(weather, date) %>% summarise(sum(tmax>=tmax_min & tmax<=tmax_max)/n())
+names(rain_prob) <- c("date", "prain")
+names(tmin_prob) <- c("date", "ptmin")
+names(tmax_prob) <- c("date", "ptmax")
+
+pweather <- data.frame(rain_prob, ptmin=tmin_prob$ptmin, ptmax=tmax_prob$ptmax)
+head(pweather,3)
+```
+
+A probability of eg. 80% (0.8) means:<br>
+<small>If you visit Austria every year at the same day for 10 years, then you may find the specified weather conditions 8 times at that day.</small>
+
+
+
+How does it work? 3/3
+========================================================
+A day, where the probability of every weather condition is higher than the specified one, is a good day to visit Austria and is displayed in the GoogleVis calendar chart.
+```{r, results = 'asis', echo=FALSE}
+days <- data.frame(date=strptime(pweather$date, "%m/%d", tz="CEST"), ok=FALSE)
+days$ok <- as.numeric(with(pweather, prain>=prob & ptmin>=prob & ptmax>=prob))
+days <- days[complete.cases(days),]
+
+C <- gvisCalendar(days, datevar = "date", numvar = "ok",
+                             options=list(
+                                     title="Calendar",
+                                     width=1000,
+                                     colorAxis="{minValue:0, maxValue:1, colors:['white', 'lightgreen']}",
+                                     calendar="{yearLabel: { fontName: 'Times-Roman',
+                                     fontSize: 24, color: 'lightgreen', bold: true},
+                                     cellSize: 17,
+                                     cellColor: { stroke: 'red', strokeOpacity: 0.2 },
+                                     focusedCellColor: {stroke:'red'}}")
+                             )
+print(C, tag='chart')
+```
+
+Useful things
+========================================================
+* **default settings** allow a quick weather-setting for most likely activities
+<div align="center">
+<img src="Visit_Austria_default.png" width=300>
+</div>
+<br>
+* Source of the presentation
+<https://github.com/peterkaj/Coursera_DDP/Visit_Austria_Presentation/>
+
+========================================================
+type: section
+<br> <br> <br>
+<center><h1>Thank you!</h1></center>
+
